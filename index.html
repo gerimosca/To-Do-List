@@ -7,5 +7,39 @@
     <link rel="stylesheet" href="./src/css/styles.css" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <img src="./docs/assets/images/bg-desktop-light.jpg" alt="light-screen" />
+    <div class="container" id="container">
+      <div class="title-container">
+        <div class="title">TO-DO LIST</div>
+        <img class="moon" src="./docs/assets/images/icon-moon.svg" alt="modo-oscuro" />
+      </div>
+      <div class="task" id="task">
+        <label class="custom-checkbox">
+          <input type="checkbox" />
+          <span class="checkmark"></span>
+          <input class="custom-input" type="text" placeholder="Create a new to do..." name="" id="inputtask" />
+        </label>
+      </div>
+
+      <!-- Acá irá la lista de To Do's -->
+
+      <div class="containerinfo">
+        <div class="printedinfo">
+          <div class="left">
+            <p><span id="pendingtask">3</span> items left</p>
+          </div>
+          <div class="group-center" id="center">
+            <span>All</span>
+            <span>Active</span>
+            <span>Completed</span>
+          </div>
+          <div class="right" id="clear">
+            <span>Clear completed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./src/js/script.js"></script>
+  </body>
 </html>
