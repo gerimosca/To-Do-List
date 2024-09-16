@@ -1,46 +1,30 @@
-const taskElement = document.getElementById('task');
-const inputTaskElement = document.getElementById('inputtask');
-const containerElement = document.getElementById('container');
+const formElement = document.getElementById('form');
 
-const pendingTaskElement = document.getElementById('pendingtask');
-const centerFilterElement = document.getElementById('center');
-const clearTasksElement = document.getElementById('clear');
+const allTasks = [
+  {
+    id: Date.now(),
+    taskName: taskName,
+    completed: false,
+  },
+];
 
-const newTask = (event) => {
-  if (event.key === 'Enter' && event.target.value !== '') {
-    const containerTask = document.createElement('div');
-    containerTask.className = 'containertask';
-
-    const printedTask = document.createElement('div');
-    printedTask.className = 'printedtask';
-
-    const customCheckbox = document.createElement('label');
-    customCheckbox.className = 'custom-checkbox';
-
-    const inputCheckbox = document.createElement('input');
-    inputCheckbox.type = 'checkbox';
-
-    const spanCheckmark = document.createElement('span');
-    spanCheckmark.className = 'checkmark';
-
-    const pTextInput = document.createElement('p');
-    pTextInput.className = 'text-input';
-    pTextInput.textContent = `${event.target.value}`;
-
-    taskElement.insertAdjacentElement('afterend', containerTask);
-    containerTask.append(printedTask);
-    printedTask.append(customCheckbox);
-    customCheckbox.append(inputCheckbox, spanCheckmark, pTextInput);
-
-    inputTaskElement.value = '';
-  }
+const saveTask = (task) => {
+  allTasks.push(task);
+  console.log(allTasks);
 };
 
-const pendingTask = (event) => {
-  event.target.textContent = printedTask.length;
+const createTask = (taskName) => {
+  const newTask = {
+    id: Date.now(),
+    taskName,
+    completed: false,
+  };
 
-  console.dir(printedTask);
+  saveTask(newTask);
 };
 
-inputTaskElement.addEventListener('keydown', newTask);
-pendingTaskElement.addEventListener('click', pendingTask);
+formElement.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!event.target.task.value.trim()) return;
+  createTask(event.target.task.value);
+});

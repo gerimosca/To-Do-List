@@ -2,44 +2,36 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--CAMBIAR POR docs/css/styles.min.css AL FINALIZAR EL PROYECTO-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./src/css/styles.css" />
-    <title>Document</title>
+    <title>To Do List</title>
   </head>
   <body>
-    <img src="./docs/assets/images/bg-desktop-light.jpg" alt="light-screen" />
-    <div class="container" id="container">
-      <div class="title-container">
-        <div class="title">TO-DO LIST</div>
-        <img class="moon" src="./docs/assets/images/icon-moon.svg" alt="modo-oscuro" />
+    <header class="header">
+      <div class="header-content">
+        <h1 class="title">TO-DO LIST</h1>
       </div>
-      <div class="task" id="task">
-        <label class="custom-checkbox">
-          <input type="checkbox" />
-          <span class="checkmark"></span>
-          <input class="custom-input" type="text" placeholder="Create a new to do..." name="" id="inputtask" />
-        </label>
+    </header>
+    <main class="main">
+      <form id="form" class="form">
+        <label for="input-task" class="label-task"></label>
+        <input type="text" id="input-task" class="input-task" name="task" placeholder="Create a new todo..." />
+      </form>
+      <div id="tasks" class="tasks"></div>
+      <div class="tasks-footer">
+        <span id="items-left">5 items left</span>
+        <button id="delete-completed" class="button-delete">Clear Completed</button>
       </div>
-
-      <!-- Acá irá la lista de To Do's -->
-
-      <div class="containerinfo">
-        <div class="printedinfo">
-          <div class="left">
-            <p><span id="pendingtask">3</span> items left</p>
-          </div>
-          <div class="group-center" id="center">
-            <span>All</span>
-            <span>Active</span>
-            <span>Completed</span>
-          </div>
-          <div class="right" id="clear">
-            <span>Clear completed</span>
-          </div>
-        </div>
+      <div id="filters" class="filters">
+        <button data-filter="all" class="filter filter-active">All</button>
+        <button data-filter="active" class="filter">Active</button>
+        <button data-filter="completed" class="filter">Completed</button>
       </div>
-    </div>
+    </main>
     <script src="./src/js/script.js"></script>
   </body>
 </html>
