@@ -1,13 +1,8 @@
 const formElement = document.getElementById('form');
 const tasksElement = document.getElementById('tasks');
+const deleteCompletedElement = document.getElementById('delete-completed');
 
-const allTasks = [
-  {
-    id: Date.now(),
-    taskName: 'Terminar de programar el To-Do List',
-    completed: false,
-  },
-];
+let allTasks = [];
 
 const printTasks = () => {
   const fragment = document.createDocumentFragment();
@@ -32,6 +27,9 @@ const printTasks = () => {
     newTaskDelete.classList.add('task-delete');
     newTaskDelete.src = './docs/assets/images/icon-cross.svg';
 
+    newTaskDelete.addEventListener('click', () => deleteTask(task.id));
+    newTaskCheck.addEventListener('change', () => completedTask(task.id));
+
     newTaskContainer.append(newTaskCheck, newTaskLabel, newTaskDelete);
     fragment.append(newTaskContainer);
   });
@@ -54,6 +52,30 @@ const createTask = (taskName) => {
 
   saveTask(newTask);
 };
+
+const completedTask = (id) => {
+  allTasks = allTasks.map((task) => {
+    if (task.id === id) {
+      task.completed = !task.completed;
+    }
+    return task;
+  });
+  printTasks();
+};
+
+const deleteTask = (id) => {
+  allTasks = allTasks.filter((task) => task.id !== id);
+  printTasks();
+};
+
+const deleteAllCompletedTasks = () => {
+  allTasks = allTasks.filter((task) => {
+    return !task.completed;
+  });
+  printTasks();
+};
+
+deleteCompletedElement.addEventListener('click', deleteAllCompletedTasks);
 
 formElement.addEventListener('submit', (event) => {
   event.preventDefault();
