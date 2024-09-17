@@ -1,8 +1,24 @@
 const formElement = document.getElementById('form');
 const tasksElement = document.getElementById('tasks');
 const deleteCompletedElement = document.getElementById('delete-completed');
+const itemsLeftElement = document.getElementById('items-left');
 
 let allTasks = [];
+
+const countItemsLeft = () => {
+  if (allTasks.length === 0) {
+    itemsLeftElement.textContent = 'No tasks';
+    return;
+  }
+
+  const itemsLeft = allTasks.filter((task) => !task.completed).length;
+
+  if (itemsLeft === 0) {
+    itemsLeftElement.textContent = 'All tasks completed';
+  } else {
+    itemsLeftElement.textContent = `${itemsLeft} items left`;
+  }
+};
 
 const printTasks = () => {
   const fragment = document.createDocumentFragment();
@@ -36,6 +52,7 @@ const printTasks = () => {
 
   tasksElement.textContent = '';
   tasksElement.append(fragment);
+  countItemsLeft();
 };
 
 const saveTask = (task) => {
@@ -74,6 +91,8 @@ const deleteAllCompletedTasks = () => {
   });
   printTasks();
 };
+
+countItemsLeft();
 
 deleteCompletedElement.addEventListener('click', deleteAllCompletedTasks);
 
