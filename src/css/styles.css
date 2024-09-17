@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+:root {
     --body-bg: #171823;
     --task-bg: #25273d;
     --text-color: #c8cbe7;
@@ -13,7 +12,7 @@
     --placeholder-color: #9495a5;
     --tasks-shadow: rgba(22, 22, 22, 0.769);
   }
-}
+
 
 body {
   margin: 0;
@@ -27,8 +26,6 @@ body {
 .header {
   height: 300px;
   padding: 54px 24px;
-  background-repeat: no-repeat;
-  background-size: cover;
   }
 
 .header-content {
@@ -53,11 +50,6 @@ body {
 .title {
   margin: 0;
   color: #fff;
-}
-
-.switch-theme {
-  width: 20px;
-  cursor: pointer;
 }
 
 .main {
@@ -185,7 +177,7 @@ body {
 .filters {
   display: flex;
   align-items: center;
-  justify-content: space-bet;
+  justify-content: space-between;
   height: 48px;
   padding-inline: 81px;
   background-color: var(--task-bg);
