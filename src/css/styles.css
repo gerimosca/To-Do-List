@@ -75,7 +75,7 @@ body {
 
 .input-task {
   height: 48px;
-  width: 320px;
+  width: 350px;
   padding-left: 56px;
   margin-bottom: 16px;
   color: var(--placeholder-color);
