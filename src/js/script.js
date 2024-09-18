@@ -5,6 +5,8 @@ const itemsLeftElement = document.getElementById('items-left');
 const filtersElement = document.getElementById('filters');
 const allFiltersElement = document.querySelectorAll('.filter');
 
+const LS = localStorage;
+
 let allTasks = [];
 
 let filterActive = 'all';
@@ -28,6 +30,11 @@ const getFilteredTasks = () => {
   if (filterActive === 'active') return allTasks.filter((task) => !task.completed);
   if (filterActive === 'completed') return allTasks.filter((task) => task.completed);
   return [...allTasks];
+};
+
+const setTaskToLocalStorage = () => {
+  const jsonTasks = JSON.stringify(allTasks);
+  LS.setItem('tasks', jsonTasks);
 };
 
 const printTasks = () => {
@@ -64,6 +71,16 @@ const printTasks = () => {
   tasksElement.textContent = '';
   tasksElement.append(fragment);
   countItemsLeft();
+  setTaskToLocalStorage();
+};
+
+const getTaskFromLocalStorage = () => {
+  const tasks = LS.getItem('tasks');
+  if (!tasks) return;
+
+  const localStorageTasks = JSON.parse(tasks);
+  allTasks = localStorageTasks;
+  printTasks();
 };
 
 const saveTask = (task) => {
@@ -113,6 +130,7 @@ const selectFilter = (event) => {
   printTasks();
 };
 
+getTaskFromLocalStorage();
 countItemsLeft();
 
 deleteCompletedElement.addEventListener('click', deleteAllCompletedTasks);
